@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import struct
 import sys
 
 import serial
@@ -8,6 +9,7 @@ from PyQt5.QtWidgets import *
 from CreatePort import Ui_Form
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+import os
 class Main(QWidget,Ui_Form):
         def __init__(self, parent=None):
             super(Main,self).__init__(parent)
@@ -70,6 +72,10 @@ class Main(QWidget,Ui_Form):
                 self.btn_start.setEnabled(False)
                 self.btn_send.setEnabled(True)
 
+
+                self.line_setSize.setReadOnly(True)
+                self.text_setFile.setReadOnly(True)
+
             except:
                 QMessageBox.about(self, "错误", "启动失败")
         #关闭线程
@@ -82,6 +88,9 @@ class Main(QWidget,Ui_Form):
                 self.btn_openFile.setEnabled(True)
                 self.btn_start.setEnabled(True)
                 self.btn_send.setEnabled(False)
+
+                self.line_setSize.setReadOnly(False)
+                self.text_setFile.setReadOnly(False)
             except:
                 QMessageBox.about(self, "错误", "关闭线程出错")
         #清除接收区数据
@@ -101,40 +110,56 @@ class Main(QWidget,Ui_Form):
             dlg=QFileDialog()
             dlg.setFileMode(QFileDialog.AnyFile)
             dlg.setFilter(QDir.Files)
+
             if dlg.exec_():
-                fileNames=dlg.selectedFiles()
-                self.text_showFile.setPlainText(fileNames[0])
+                self.fileNames=dlg.selectedFiles()
+                self.text_showFile.setPlainText(self.fileNames[0])
+
                 try:
-                    f=open(fileNames[0], 'r',encoding='UTF-8')
+                    print(2)
+                    f=open(self.fileNames[0], 'rb')
+                    print(3)
                     self.dataS=f.read()
+                    print(self.dataS)
+                    print(1)
                     f.close()
-                    self.text_showS.setPlainText(self.dataS)
+
+                    # self.text_showS.setPlainText(self.dataS)
                 except:
                     QMessageBox.about(self, "错误", "出现异常")
                     print("出现异常")
                     f.close()
+                # with open(r"E:\pycharm\untitled\201902\24\RevisePort\12.jpg","wb") as f:
+                #     f.write(self.dataS)
+
+            # fname, _=QFileDialog.getOpenFileName(self,"","C:\\","Image files(*.jpg *.gif)")
+            # print("fname:",fname)
         #发送文件
         def send(self):
-            self.dataS=self.text_showS.toPlainText()
+            # self.dataS=self.text_showS.toPlainText()
             # print("长度：",len(self.dataS))
             if len(self.dataS)>0:
                 # print(type(self.dataS))
                 # print(self.dataS)
                 print("正在发送中")
-                self.ser.write(self.dataS.encode('utf-8'))
-                print(3)
+                self.size=self.ser.write(self.dataS)
+
+                print("Size:",self.size)
             else:
                 QMessageBox.about(self, "错误", "发送内容为空")
-        # 显示串口信息到接收区
+        # 接收区显示串口信息
 
         def showR(self,sh):
             # self.text_showR.clear()
+
             self.dataR=self.dataR+sh
-            self.text_showR.setPlainText(self.dataR)
+            print(sh)
+            # self.text_showR.setPlainText(self.dataR)
+
 
 
 class Worker(QThread):
-    sinOut1 = pyqtSignal(str)
+    sinOut1 = pyqtSignal(bytes)
 
     def __init__(self, parent=None):
         super(Worker, self).__init__(parent)
@@ -147,35 +172,59 @@ class Worker(QThread):
 
     def run(self):
 
-        print("线程运行")
+        print("线程启动")
         Port=main.com_showPort.currentText()
         Rate=main.com_showRate.currentText()
+        print(111111111111111111111111111111111)
+        line_size=main.line_setSize.text()
+        print(11111111)
+        print(type(line_size))
+
+
+        print(11111111111111111111111111111111122222222222222222)
+        if len(line_size)<1:
+            file_size=2
+        else:
+            file_size = int(line_size)
+        file=main.text_setFile.toPlainText()
+        print("Len",len(file))
+        if len(file)<1:
+            file=r"C:\Users\ASUS\Desktop\video.mp4"
+
         if Port.find("COM")!=-1:
             print(2)
             main.ser.setPort(Port)
             main.ser.baudrate=Rate
 
             main.ser.open()
+
             try:
                 while self.working == True:
+
                     # pass
-                    print("线程开启")
-                    num1 = main.ser.readline()
-                    num2 = str(num1, 'utf-8')
+                    print("线程运行")
+                    # print("大小：",main.size)
+                    num1=main.ser.read(file_size)
+                    with open(file, "wb") as f:
+                        f.write(num1)
+                        print("写入文件正常")
+                    # self.sinOut1[bytes].emit(num1)
+                    # num1 = main.ser.readline()
+                    # num2 = str(num1, 'utf-8')
                     # print(num1)
-                    position2 = num2.find('\n')
-                    if position2 == 1:
-                        self.sinOut1[str].emit(num2[0:1])
-                    else:
-                        self.sinOut1[str].emit(num2[0:position2 - 1])
-                    # self.sinOut1[str].emit(num2)
+                    # position2 = num2.find('\n')
+                    # if position2 == 1:
+                    #     self.sinOut1[str].emit(num2[0:1])
+                    # else:
+                    #     self.sinOut1[str].emit(num2[0:position2 - 1])
+                    # # self.sinOut1[str].emit(num2)
 
                 main.ser.close()
             except:
                 print("串口读取数据失败")
                 QMessageBox.about(main, "错误", "串口读取数据失败")
         else:
-            QMessageBox.about(main, "错误", "请检查是否配置好串口")
+            QMessageBox.about(main, "错误", "请检查是否配置参数")
 
 
 

@@ -19,162 +19,6 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_3">
-   <item row="0" column="0">
-    <widget class="QScrollArea" name="scrollArea">
-     <property name="maximumSize">
-      <size>
-       <width>260</width>
-       <height>16777215</height>
-      </size>
-     </property>
-     <property name="widgetResizable">
-      <bool>true</bool>
-     </property>
-     <widget class="QWidget" name="scrollAreaWidgetContents">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>258</width>
-        <height>600</height>
-       </rect>
-      </property>
-      <widget class="QWidget" name="layoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>10</y>
-         <width>214</width>
-         <height>107</height>
-        </rect>
-       </property>
-       <layout class="QGridLayout" name="gridLayout">
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_2">
-          <property name="text">
-           <string>波特率</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QComboBox" name="com_showPort"/>
-        </item>
-        <item row="1" column="1">
-         <widget class="QComboBox" name="com_showRate">
-          <item>
-           <property name="text">
-            <string>115200</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>9600</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>256000</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="label">
-          <property name="text">
-           <string>串口号</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QSplitter" name="splitter">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>130</y>
-         <width>191</width>
-         <height>51</height>
-        </rect>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <widget class="QPushButton" name="btn_searchPort">
-        <property name="text">
-         <string>查找串口</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QPushButton" name="btn_openFile">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>190</y>
-         <width>191</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>打开文件</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="btn_start">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>320</y>
-         <width>191</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>开始</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="btn_end">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>380</y>
-         <width>191</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>停止</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="btn_clearR">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>430</y>
-         <width>191</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>清除</string>
-       </property>
-      </widget>
-      <widget class="QTextEdit" name="text_showFile">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>240</y>
-         <width>191</width>
-         <height>71</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-      </widget>
-     </widget>
-    </widget>
-   </item>
    <item row="0" column="1">
     <widget class="QSplitter" name="splitter_2">
      <property name="orientation">
@@ -247,6 +91,213 @@ p, li { white-space: pre-wrap; }
          </widget>
         </item>
        </layout>
+      </widget>
+     </widget>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="maximumSize">
+      <size>
+       <width>260</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>258</width>
+        <height>600</height>
+       </rect>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>10</y>
+         <width>214</width>
+         <height>107</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>波特率</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="com_showPort"/>
+        </item>
+        <item row="1" column="1">
+         <widget class="QComboBox" name="com_showRate">
+          <item>
+           <property name="text">
+            <string>115200</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>9600</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>256000</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>串口号</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QPushButton" name="btn_openFile">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>130</y>
+         <width>111</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>打开文件</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_start">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>350</y>
+         <width>111</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>开始</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_end">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>350</y>
+         <width>111</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>停止</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_clearR">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>400</y>
+         <width>191</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>清除</string>
+       </property>
+      </widget>
+      <widget class="QTextEdit" name="text_showFile">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>180</y>
+         <width>231</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_3">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>290</y>
+         <width>101</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>大小</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_4">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>460</y>
+         <width>111</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>保存路径</string>
+       </property>
+      </widget>
+      <widget class="QTextEdit" name="text_setFile">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>510</y>
+         <width>211</width>
+         <height>81</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="line_setSize">
+       <property name="geometry">
+        <rect>
+         <x>80</x>
+         <y>290</y>
+         <width>141</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="btn_searchPort">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>130</y>
+         <width>116</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>查找串口</string>
+       </property>
       </widget>
      </widget>
     </widget>
