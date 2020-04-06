@@ -29,7 +29,10 @@ class Main(QWidget,Ui_Form):
             self.thread = Worker()  # 线程实例化
             self.ser = serial.Serial()  #串口实例化
             self.setSlot()
-
+            self.setqss()
+        def setqss(self):
+            from qss import QSSRead
+            QSSRead.setStyle("QSS.qss", self)
         def setSlot(self):
             print("信号槽的初始化")
             self.btn_searchPort.clicked.connect(self.searchPort)#查找串口号
